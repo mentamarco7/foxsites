@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox Web Creations | Custom Websites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#3b82f6',
+                        dark: '#1e1b4b',
+                        light: '#a5b4fc',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wave': 'wave 8s ease-in-out infinite',
+                        'gradient': 'gradient 15s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(5deg)' },
+                            '75%': { transform: 'rotate(-5deg)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6366f1, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+        }
+        .shape-blob {
+            background: rgba(99, 102, 241, 0.2);
+            height: 200px;
+            width: 200px;
+            border-radius: 30% 50% 20% 40%;
+            position: absolute;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        .shape-blob.one {
+            left: 70%;
+            top: 20%;
+            transform: rotate(-180deg);
+            animation: wave 15s ease infinite;
+        }
+        .shape-blob.two {
+            left: 10%;
+            top: 60%;
+            transform: rotate(180deg);
+            animation: wave 20s ease infinite;
+        }
+        .shape-blob.three {
+            left: 50%;
+            top: 50%;
+            transform: rotate(135deg);
+            animation: wave 25s ease infinite;
+        }
+        .animated-icon {
+            transition: all 0.3s ease;
+        }
+        .animated-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg);
+        }
+        .service-icon {
+            transition: transform 0.6s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased overflow-x-hidden">
+    <!-- Animated background elements -->
+    <div class="fixed -z-10 w-full h-full overflow-hidden">
+        <div class="shape-blob one animate-float"></div>
+        <div class="shape-blob two animate-float animation-delay-2000"></div>
+        <div class="shape-blob three animate-float animation-delay-4000"></div>
+        
+        <div class="absolute top-20 left-10 w-32 h-32 rounded-full bg-purple-300 opacity-20 animate-float"></div>
+        <div class="absolute top-1/3 right-20 w-40 h-40 rounded-full bg-blue-300 opacity-20 animate-float animation-delay-2000"></div>
+        <div class="absolute bottom-20 left-1/4 w-24 h-24 rounded-full bg-indigo-300 opacity-20 animate-float animation-delay-3000"></div>
+        <div class="absolute top-1/2 right-1/3 w-28 h-28 rounded-full bg-blue-400 opacity-20 animate-float animation-delay-1000"></div>
+        
+        <!-- Animated grid -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.1))]"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-effect fixed w-full z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-white text-2xl font-bold animate-pulse-slow">Fox</span>
+                        <span class="text-light text-xl font-medium">Web Creations</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-white hover:bg-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105">Home</a>
+                        <a href="#about" class="text-light hover:bg-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105">About</a>
+                        <a href="#services" class="text-light hover:bg-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105">Services</a>
+                        <a href="#contact" class="text-light hover:bg-primary px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105">Contact</a>
+                        <button id="loginBtn" class="ml-4 bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">Login</button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-light focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden fixed inset-0 z-40 bg-dark bg-opacity-90 backdrop-blur-sm">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="text-white text-xl font-medium hover:text-primary transition">Home</a>
+            <a href="#about" class="text-light text-xl font-medium hover:text-primary transition">About</a>
+            <a href="#services" class="text-light text-xl font-medium hover:text-primary transition">Services</a>
+            <a href="#contact" class="text-light text-xl font-medium hover:text-primary transition">Contact</a>
+            <button id="mobileLoginBtn" class="mt-8 bg-white text-primary px-6 py-3 rounded-md text-lg font-medium hover:bg-opacity-90 transition-all duration-300 hover:scale-105 shadow-lg">Login</button>
+            <button id="closeMobileMenu" class="absolute top-4 right-4 text-white hover:text-primary transition">
+                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative animate-bounce-slow">
+            <button id="closeLoginModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Login to Your Account</h2>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-primary hover:text-indigo-500 transition">Forgot password?</a>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 hover:scale-105">
+                        Sign in
+                    </button>
+                </div>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600">
+                Don't have an account? <button id="showRegisterBtn" class="font-medium text-primary hover:text-indigo-500 transition">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative animate-bounce-slow">
+            <button id="closeRegisterModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Create Your Account</h2>
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label for="reg-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="reg-name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div>
+                    <label for="reg-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="reg-email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div>
+                    <label for="reg-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="reg-password" name="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div>
+                    <label for="reg-confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="reg-confirm-password" name="confirm-password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary input-focus transition">
+                </div>
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">I agree to the <a href="#" class="text-primary hover:text-indigo-500 transition">Terms and Conditions</a></label>
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 hover:scale-105">
+                        Register
+                    </button>
+                </div>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600">
+                Already have an account? <button id="showLoginBtn" class="font-medium text-primary hover:text-indigo-500 transition">Sign in</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Bring Your <span class="text-light animate-pulse">Vision</span> to Life</h1>
+                    <p class="text-xl text-light mb-8">I create stunning, functional websites tailored to your unique needs. Let's build something amazing together!</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button id="heroContactBtn" class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">Get Started</button>
+                        <button id="heroLearnBtn" class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-all duration-300 hover:scale-105">Learn More</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative z-10 glass-effect p-4 rounded-2xl">
+                        <div class="bg-gradient-to-br from-primary to-secondary w-full h-64 rounded-xl flex items-center justify-center">
+                            <div class="text-center p-6">
+                                <div class="text-white text-5xl mb-4 animate-spin-slow">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h3 class="text-white text-2xl font-bold mb-2">Your Website Here</h3>
+                                <p class="text-light">Let's create something amazing!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-400 rounded-full opacity-20 animate-spin-slow"></div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-blue-400 rounded-full opacity-20 animate-pulse-slow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">About <span class="text-primary">Me</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">I'm passionate about creating beautiful, functional websites that help businesses and individuals stand out online.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="glass-effect p-4 rounded-2xl inline-block">
+                        <div class="bg-gradient-to-tr from-primary to-secondary w-full h-64 rounded-xl flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-white text-6xl mb-4 animate-bounce-slow">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="text-white text-xl font-bold">Fox Web Developer</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg animate-bounce-slow">
+                        <div class="flex items-center">
+                            <div class="bg-primary p-3 rounded-full">
+                                <i class="fas fa-code text-white text-xl"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-500">Projects Completed</p>
+                                <p class="text-xl font-bold text-dark">50+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-dark mb-6">I Create Websites That Work</h3>
+                    <p class="text-gray-600 mb-6">Hi, I'm Fox, a web developer with a passion for creating beautiful, functional websites. This platform is designed to make it easy for you to reach out and discuss your website needs.</p>
+                    <p class="text-gray-600 mb-8">Simply log in and send me an email through this site, and I'll get back to you with a proposal for your dream website. I specialize in responsive designs, e-commerce solutions, and custom web applications.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 animated-icon">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <span class="text-gray-700">Responsive Design</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 animated-icon">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <span class="text-gray-700">Fast Loading</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 animated-icon">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <span class="text-gray-700">SEO Optimized</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded-full mr-3 animated-icon">
+                                <i class="fas fa-check text-primary"></i>
+                            </div>
+                            <span class="text-gray-700">User Friendly</span>
+                        </div>
+                    </div>
+                    <button id="aboutContactBtn" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg">Contact Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">My <span class="text-primary">Services</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">I offer a range of web development services to help bring your digital presence to life.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-500 card-hover group">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full inline-block mb-4 service-icon">
+                            <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-3">Custom Website Development</h3>
+                        <p class="text-gray-600 mb-4">Tailored websites built from scratch to meet your specific requirements and business goals.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Fully responsive design</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Custom functionality</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">SEO optimized</span>
+                            </li>
+                        </ul>
+                        <button class="service-learn-more text-primary font-medium hover:text-indigo-700 flex items-center transition-all duration-300 group-hover:scale-105">
+                            Learn more <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-500 card-hover group">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full inline-block mb-4 service-icon">
+                            <i class="fas fa-shopping-cart text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-3">E-Commerce Solutions</h3>
+                        <p class="text-gray-600 mb-4">Powerful online stores with secure payment gateways and inventory management.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Product management</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Secure checkout</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Mobile friendly</span>
+                            </li>
+                        </ul>
+                        <button class="service-learn-more text-primary font-medium hover:text-indigo-700 flex items-center transition-all duration-300 group-hover:scale-105">
+                            Learn more <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-500 card-hover group">
+                    <div class="p-6">
+                        <div class="bg-primary bg-opacity-10 p-4 rounded-full inline-block mb-4 service-icon">
+                            <i class="fas fa-mobile-alt text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark mb-3">Web Application Development</h3>
+                        <p class="text-gray-600 mb-4">Interactive web applications with dynamic content and user authentication.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">User accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">Database integration</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-primary mr-2"></i>
+                                <span class="text-gray-700">API connections</span>
+                            </li>
+                        </ul>
+                        <button class="service-learn-more text-primary font-medium hover:text-indigo-700 flex items-center transition-all duration-300 group-hover:scale-105">
+                            Learn more <i class="fas fa-arrow-right ml-2 transition-all duration-300 group-hover:ml-3"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Client <span class="text-light">Testimonials</span></h2>
+                <div class="w-24 h-1 bg-light mx-auto mb-6"></div>
+                <p class="text-lg text-light max-w-3xl mx-auto">Hear what my clients have to say about working with me.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm border border-white border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-light mb-6">"Fox created an amazing website for my business that has helped increase our online sales by 200%. The attention to detail and communication throughout the process was exceptional."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold mr-4">
+                            SJ
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium">Sarah Johnson</h4>
+                            <p class="text-light text-sm">CEO, Boutique Store</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm border border-white border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-light mb-6">"Working with Fox was a pleasure. They understood exactly what we needed for our web application and delivered beyond our expectations. The site is fast, secure, and user-friendly."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold mr-4">
+                            MC
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium">Michael Chen</h4>
+                            <p class="text-light text-sm">CTO, Tech Startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm border border-white border-opacity-20 hover:border-opacity-40 transition-all duration-300 hover:scale-[1.02]">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 text-xl">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-light mb-6">"The website Fox built for our restaurant has been instrumental in increasing our online orders. It's beautiful, functional, and exactly what we envisioned. Highly recommended!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold mr-4">
+                            ER
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium">Emily Rodriguez</h4>
+                            <p class="text-light text-sm">Owner, Gourmet Restaurant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Get In <span class="text-primary">Touch</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Ready to start your project? Log in and send me a message through the form below.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-dark mb-6">Send Me a Message</h3>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                <input type="text" id="contact-name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent input-focus transition">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                                <input type="email" id="contact-email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent input-focus transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent input-focus transition">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                            <textarea id="contact-message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent input-focus transition"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" id="sendMessageBtn" class="w-full bg-primary text-white px-6 py-4 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-dark mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 animated-icon">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-800">Email</h4>
+                                <p class="text-gray-600">foxoyt40@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 animated-icon">
+                                <i class="fas fa-phone-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-800">Phone</h4>
+                                <p class="text-gray-600">+1 (123) 456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4 animated-icon">
+                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-gray-800">Location</h4>
+                                <p class="text-gray-600">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-10">
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8 text-center animate-bounce-slow">
+            <div class="bg-green-100 p-4 rounded-full inline-block mb-6">
+                <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Message Sent Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for reaching out. I'll get back to you as soon as possible to discuss your website project.</p>
+            <button id="closeSuccessModal" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg">Close</button>
+        </div>
+    </div>
+
+    <!-- Learn More Modal -->
+    <div id="learnMoreModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-8 relative animate-bounce-slow">
+            <button id="closeLearnMoreModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <h2 class="text-3xl font-bold text-dark mb-6">How It Works</h2>
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                        <span class="text-primary font-bold">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">Create Your Account</h3>
+                        <p class="text-gray-600">Sign up or log in to get started. It's quick and easy!</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                        <span class="text-primary font-bold">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">Describe Your Project</h3>
+                        <p class="text-gray-600">Tell me about your website needs through our contact form.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                        <span class="text-primary font-bold">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">Receive a Proposal</h3>
+                        <p class="text-gray-600">I'll review your requirements and send you a customized proposal.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                        <span class="text-primary font-bold">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-dark mb-2">Let's Build Together</h3>
+                        <p class="text-gray-600">Once approved, we'll start creating your amazing website!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8">
+                <button id="getStartedBtn" class="w-full bg-primary text-white px-6 py-4 rounded-lg font-medium hover:bg-indigo-700 transition-all duration-300 hover:scale-105 shadow-lg">
+                    Get Started Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Fox Web Creations</h3>
+                    <p class="text-light mb-4">Creating beautiful, functional websites that help businesses grow and succeed online.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-light hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-light hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-light hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-light hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-light hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-light hover:text-white transition">About</a></li>
+                        <li><a href="#services" class="text-light hover:text-white transition">Services</a></li>
+                        <li><a href="#contact" class="text-light hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-light hover:text-white transition">Web Design</a></li>
+                        <li><a href="#" class="text-light hover:text-white transition">Web Development</a></li>
+                        <li><a href="#" class="text-light hover:text-white transition">E-Commerce</a></li>
+                        <li><a href="#" class="text-light hover:text-white transition">SEO</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-light mb-4">Subscribe to get updates on web design trends and tips.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg focus:outline-none text-dark w-full">
+                        <button type="submit" class="bg-primary px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-light">
+                <p>&copy; 2023 Fox Web Creations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 hover:scale-110 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Login modal toggle
+        const loginBtn = document.getElementById('loginBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const showRegisterBtn = document.getElementById('showRegisterBtn');
+
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+        });
+
+        mobileLoginBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+        });
+
+        showRegisterBtn.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            registerModal.classList.remove('hidden');
+        });
+
+        // Register modal toggle
+        const registerModal = document.getElementById('registerModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const showLoginBtn = document.getElementById('showLoginBtn');
+
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.classList.add('hidden');
+        });
+
+        showLoginBtn.addEventListener('click', () => {
+            registerModal.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+
+        // Form submissions
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const closeSuccessModal = document.getElementById('closeSuccessModal');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically handle login logic
+            loginModal.classList.add('hidden');
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically handle registration logic
+            registerModal.classList.add('hidden');
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+            
+            // Here you would typically send this data to your server
+            // For demo purposes, we'll just show the success modal
+            console.log('Message to be sent to foxoyt40@gmail.com:', { name, email, subject, message });
+            
+            // Show success modal
+            successModal.classList.remove('hidden');
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        closeSuccessModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+
+        // Learn More Modal
+        const learnMoreModal = document.getElementById('learnMoreModal');
+        const closeLearnMoreModal = document.getElementById('closeLearnMoreModal');
+        const heroLearnBtn = document.getElementById('heroLearnBtn');
+        const serviceLearnMoreBtns = document.querySelectorAll('.service-learn-more');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+
+        heroLearnBtn.addEventListener('click', () => {
+            learnMoreModal.classList.remove('hidden');
+        });
+
+        serviceLearnMoreBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                learnMoreModal.classList.remove('hidden');
+            });
+        });
+
+        closeLearnMoreModal.addEventListener('click', () => {
+            learnMoreModal.classList.add('hidden');
+        });
+
+        getStartedBtn.addEventListener('click', () => {
+            learnMoreModal.classList.add('hidden');
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Navigation buttons
+        const heroContactBtn = document.getElementById('heroContactBtn');
+        const aboutContactBtn = document.getElementById('aboutContactBtn');
+
+        heroContactBtn.addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        aboutContactBtn.addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.remove('opacity-100', 'visible');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.service-card, .testimonial, .feature');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fadeIn');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=mentamarco7ss/foxwebsite" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
